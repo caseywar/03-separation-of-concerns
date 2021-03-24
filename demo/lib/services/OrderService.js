@@ -12,4 +12,9 @@ module.exports = class OrderService {
 
     return order;
   }
+
+  static async getAll() {
+    const orders = await Order.selectAll();
+    return orders;
+  }
 };

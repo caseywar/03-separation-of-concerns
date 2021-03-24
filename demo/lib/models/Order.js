@@ -21,4 +21,10 @@ module.exports = class Order {
 
     return new Order(rows[0]);
   }
+
+  static async selectAll() {
+    const { rows } = await pool.query(`SELECT * FROM orders`);
+
+    return rows;
+  }
 };

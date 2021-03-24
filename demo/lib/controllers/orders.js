@@ -14,7 +14,16 @@ module.exports = Router()
       next(err);
     }
   })
-  .get('/', async (req, res, next) => {})
+
+  .get('/', async (req, res, next) => {
+    try {
+      const orders = await OrderService.getAll();
+      res.send(orders);
+    } catch (err) {
+      next(err);
+    }
+  })
+
   .get('/:id', async (req, res, next) => {})
   .put('/:id', async (req, res, next) => {})
   .delete('/:id', async (req, res, next) => {});
