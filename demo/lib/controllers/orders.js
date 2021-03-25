@@ -1,4 +1,5 @@
 const { Router } = require('express');
+const Order = require('../models/Order');
 const OrderService = require('../services/OrderService');
 
 module.exports = Router()
@@ -16,9 +17,13 @@ module.exports = Router()
   })
 
   .get('/', async (req, res, next) => {
-    OrderService.getAll()
+    Order.selectAll()
       .then((orders) => res.json(orders))
       .catch(next);
+
+    // OrderService.getAll()
+    //   .then((orders) => res.json(orders))
+    //   .catch(next);
 
     // try {
     //   const orders = await OrderService.getAll();
