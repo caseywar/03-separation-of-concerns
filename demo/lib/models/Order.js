@@ -33,4 +33,16 @@ module.exports = class Order {
 
     return new Order(rows[0]);
   }
+
+  static async update(order) {
+    const { rows } = await pool.query(
+      `
+    UPDATE orders 
+    SET quantity = $1 
+    WHERE id = $2 
+    RETURNING *`,
+      [order.quantity, order.id]
+    );
+    return new Order(rows[0]);
+  }
 };

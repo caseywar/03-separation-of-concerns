@@ -13,8 +13,13 @@ module.exports = class OrderService {
     return order;
   }
 
-  // static async getAll() {
-  //   const orders = await Order.selectAll();
-  //   return orders;
-  // }
+  static async updateEdited(id, { quantity }) {
+    await sendSms(
+      process.env.ORDER_HANDLER_NUMBER,
+      `Order has been updated to ${quantity}`
+    );
+
+    const order = await Order.update({ id, quantity });
+    return order;
+  }
 };

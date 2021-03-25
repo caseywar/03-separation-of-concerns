@@ -42,5 +42,13 @@ module.exports = Router()
     // }
   })
 
-  .put('/:id', async (req, res, next) => {})
+  .put('/:id', async (req, res, next) => {
+    try {
+      const order = await OrderService.updateEdited(req.params.id, req.body);
+      res.send(order);
+    } catch (err) {
+      next(err);
+    }
+  })
+
   .delete('/:id', async (req, res, next) => {});
