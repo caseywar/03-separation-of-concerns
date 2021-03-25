@@ -27,4 +27,10 @@ module.exports = class Order {
 
     return rows;
   }
+
+  static async selectById(id) {
+    const { rows } = await pool.query('SELECT * FROM orders WHERE id=$1', [id]);
+
+    return new Order(rows[0]);
+  }
 };

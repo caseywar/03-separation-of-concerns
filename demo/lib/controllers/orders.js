@@ -21,10 +21,6 @@ module.exports = Router()
       .then((orders) => res.json(orders))
       .catch(next);
 
-    // OrderService.getAll()
-    //   .then((orders) => res.json(orders))
-    //   .catch(next);
-
     // try {
     //   const orders = await OrderService.getAll();
     //   res.send(orders);
@@ -33,6 +29,18 @@ module.exports = Router()
     // }
   })
 
-  .get('/:id', async (req, res, next) => {})
+  .get('/:id', async (req, res, next) => {
+    Order.selectById(req.params.id)
+      .then((order) => res.json(order))
+      .catch(next);
+
+    // try {
+    //   const order = await Order.selectById(req.params.id);
+    //   res.send(order);
+    // } catch (err) {
+    //   next(err);
+    // }
+  })
+
   .put('/:id', async (req, res, next) => {})
   .delete('/:id', async (req, res, next) => {});
