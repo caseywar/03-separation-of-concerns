@@ -22,4 +22,14 @@ module.exports = class OrderService {
     const order = await Order.update({ id, quantity });
     return order;
   }
+
+  static async deletedOrder(id) {
+    await sendSms(
+      process.env.ORDER_HANDLER_NUMBER,
+      `Order number ${id} has been deleted`
+    );
+
+    const order = await Order.delete(id);
+    return order;
+  }
 };
