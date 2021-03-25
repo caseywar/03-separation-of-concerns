@@ -16,12 +16,16 @@ module.exports = Router()
   })
 
   .get('/', async (req, res, next) => {
-    try {
-      const orders = await OrderService.getAll();
-      res.send(orders);
-    } catch (err) {
-      next(err);
-    }
+    OrderService.getAll()
+      .then((orders) => res.json(orders))
+      .catch(next);
+
+    // try {
+    //   const orders = await OrderService.getAll();
+    //   res.send(orders);
+    // } catch (err) {
+    //   next(err);
+    // }
   })
 
   .get('/:id', async (req, res, next) => {})
